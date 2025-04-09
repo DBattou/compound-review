@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="flex flex-row place-content-between">
-      <Header addContact={handleAddContact}></Header>
+      <Header onAddContact={handleAddContact}></Header>
     </div>
   );
 }

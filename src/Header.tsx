@@ -1,8 +1,8 @@
-export default function Header({ addContact }: { addContact: () => void }) {
+export default function Header({ onAddContact }: { onAddContact: () => void }) {
   return (
     <>
       <h1>100 Contacts</h1>
-      <button onClick={addContact}>+ Add Contact</button>
+      <button onClick={onAddContact}>+ Add Contact</button>
     </>
   );
 }
