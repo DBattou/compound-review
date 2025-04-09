@@ -1,5 +1,5 @@
 import './App.css';
-import Header from './Header';
+import Header from './components/Header';
 
 function App() {
   const handleAddContact = () => {
@@ -7,9 +7,9 @@ function App() {
   };
 
   return (
-    <div className="flex flex-row place-content-between">
-      <Header onAddContact={handleAddContact}></Header>
-    </div>
+    <>
+      <Header onAddContact={handleAddContact} />
+    </>
   );
 }
 
