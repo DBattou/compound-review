@@ -1,10 +1,12 @@
-const USER_LIST: Array<string> = [
+export type Contacts = Array<string>;
+
+export const USER_LIST: Contacts = [
   'Mackenzie MacGyver',
   'Darien Kassulke',
   'Jewel Wisoky',
 ];
 
-export const FULL_USER_LIST: Array<string> = [
+export const FULL_USER_LIST: Contacts = [
   'Mackenzie MacGyver',
   'Darien Kassulke',
   'Jewel Wisoky',
@@ -15,5 +17,3 @@ export const FULL_USER_LIST: Array<string> = [
   'Donnie Oberbrunner',
   'Patience Smith',
 ];
-
-export default USER_LIST;
