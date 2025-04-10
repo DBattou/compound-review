@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface ContactListProps {
   contacts: Array<string>;
 }
@@ -9,10 +11,10 @@ export default function ContactList({ contacts }: ContactListProps) {
       <hr className="bg-gray-500 w-full" />
       {contacts.map((contact) => {
         return (
-          <>
-            <p className="text-blue-500 py-4">{contact}</p>
+          <React.Fragment key={contact}>
+            <p className="text-blue-500 py-4 pl-3">{contact}</p>
             <hr className="bg-gray-500 w-full" />
-          </>
+          </React.Fragment>
         );
       })}
     </div>
