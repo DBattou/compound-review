@@ -1,5 +1,7 @@
+import { Contacts } from '../data/userList';
+
 interface ContactListProps {
-  contacts: Array<string>;
+  contacts: Contacts;
 }
 
 export default function ContactList({ contacts }: ContactListProps) {
@@ -12,9 +14,9 @@ export default function ContactList({ contacts }: ContactListProps) {
         <ul className="w-full">
           {contacts.map((contact) => {
             return (
-              <li className="flex flex-col items-start w-full" key={contact}>
+              <li className="flex flex-col items-start w-full" key={contact.id}>
                 <hr className="bg-gray-500 w-full" />
-                <p className="text-blue-500 py-4 pl-3">{contact}</p>
+                <p className="text-blue-500 py-4 pl-3">{`${contact.firstName} ${contact.lastName}`}</p>
               </li>
             );
           })}
