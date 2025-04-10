@@ -1,4 +1,4 @@
-export type Contacts = Array<string>;
+export type Contacts = string[];
 
 export const FULL_USER_LIST: Contacts = [
   'Mackenzie MacGyver',
