@@ -1,15 +1,14 @@
-export type Contacts = string[];
+import fullList from './full-user-list.json';
 
-export const FULL_USER_LIST: Contacts = [
-  'Mackenzie MacGyver',
-  'Darien Kassulke',
-  'Jewel Wisoky',
-  'Clyde Prosacco',
-  'Ralph Thiel',
-  'Kaylah Spencer',
-  'Norma Bernhard',
-  'Donnie Oberbrunner',
-  'Patience Smith',
-];
+export type Contact = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  address: string;
+};
+export type Contacts = Contact[];
+
+const FULL_USER_LIST: Contacts = fullList;
 
 export const USER_LIST: Contacts = FULL_USER_LIST.slice(0, 3);
