@@ -1,11 +1,5 @@
 export type Contacts = Array<string>;
 
-export const USER_LIST: Contacts = [
-  'Mackenzie MacGyver',
-  'Darien Kassulke',
-  'Jewel Wisoky',
-];
-
 export const FULL_USER_LIST: Contacts = [
   'Mackenzie MacGyver',
   'Darien Kassulke',
@@ -17,3 +11,5 @@ export const FULL_USER_LIST: Contacts = [
   'Donnie Oberbrunner',
   'Patience Smith',
 ];
+
+export const USER_LIST: Contacts = FULL_USER_LIST.slice(0, 3);
