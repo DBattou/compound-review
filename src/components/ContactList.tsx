@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface ContactListProps {
   contacts: Array<string>;
 }
@@ -11,14 +9,16 @@ export default function ContactList({ contacts }: ContactListProps) {
       {contacts.length === 0 ? (
         <p className="py-4">There is currently no contact in your list.</p>
       ) : (
-        contacts.map((contact) => {
-          return (
-            <React.Fragment key={contact}>
-              <hr className="bg-gray-500 w-full" />
-              <p className="text-blue-500 py-4 pl-3">{contact}</p>
-            </React.Fragment>
-          );
-        })
+        <ul className="w-full">
+          {contacts.map((contact) => {
+            return (
+              <li className="flex flex-col items-start w-full" key={contact}>
+                <hr className="bg-gray-500 w-full" />
+                <p className="text-blue-500 py-4 pl-3">{contact}</p>
+              </li>
+            );
+          })}
+        </ul>
       )}
     </div>
   );
