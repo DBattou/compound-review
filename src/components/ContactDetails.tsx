@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { type Contact, USER_LIST } from '../data/userList';
+import { useOnClickOutside } from '../hooks';
 
 interface ContactDetailsProps {
   onClose: () => void;
@@ -30,26 +31,7 @@ export default function ContactDetails({ onClose, contactId }: ContactDetailsPro
 
   const modal = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (modal.current && !modal.current.contains(event.target as Node)) {
-        onClose();
-      }
-    }
-
-    function handleTouchOutside(event: TouchEvent) {
-      if (modal.current && !modal.current.contains(event.target as Node)) {
-        onClose();
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleTouchOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleTouchOutside);
-    };
-  }, [onClose]);
+  useOnClickOutside(modal, onClose);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center p-5 z-50">
