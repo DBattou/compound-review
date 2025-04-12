@@ -15,7 +15,7 @@ export default function ContactDetails({ onClose, contactId }: ContactDetailsPro
     try {
       const contactData = USER_LIST.find(({ id }) => id === contactId) ?? null;
       if (!contactData) {
-        throw new Error('Error fecthing the data');
+        throw new Error('Error fetching the data');
       }
 
       setContactData(contactData);
