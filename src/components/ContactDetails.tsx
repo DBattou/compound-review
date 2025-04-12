@@ -18,9 +18,17 @@ export default function ContactDetails({ onClose, contactId }: ContactDetailsPro
       }
     }
 
+    function handleTouchOutside(event: TouchEvent) {
+      if (modal.current && !modal.current.contains(event.target as Node)) {
+        onClose();
+      }
+    }
+
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleTouchOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleTouchOutside);
     };
   }, [onClose]);
 
