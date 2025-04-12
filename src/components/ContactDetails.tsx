@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { USER_LIST } from '../data/userList';
+import { useEffect, useRef, useState } from 'react';
+import { type Contact, USER_LIST } from '../data/userList';
 
 interface ContactDetailsProps {
   onClose: () => void;
@@ -7,7 +7,26 @@ interface ContactDetailsProps {
 }
 
 export default function ContactDetails({ onClose, contactId }: ContactDetailsProps) {
-  const contactData = USER_LIST.find(({ id }) => id === contactId);
+  const [contactData, setContactData] = useState<Contact | null>(null);
+  const [error, setError] = useState<Error | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean | null>(true);
+
+  useEffect(() => {
+    try {
+      const contactData = USER_LIST.find(({ id }) => id === contactId) ?? null;
+      if (!contactData) {
+        throw new Error('Error fecthing the data');
+      }
+
+      setContactData(contactData);
+      setError(null);
+    } catch (error) {
+      setError(error as Error);
+      setContactData(null);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [contactId]);
 
   const modal = useRef<HTMLElement>(null);
 
@@ -40,18 +59,28 @@ export default function ContactDetails({ onClose, contactId }: ContactDetailsPro
         className="relative w-full max-w-[440px] flex flex-col items-start rounded-lg bg-neutral-800 "
         ref={modal}
       >
-        <div className="flex flex-row place-content-between w-full items-center p-2">
-          <p className="text-white h-full">{`${contactData?.firstName} ${contactData?.lastName}`}</p>
-          <button
-            className="text-white"
-            onClick={onClose}
-            aria-label="Close contact details"
-          >
-            x
-          </button>
-        </div>
-        <p className="text-white h-full p-4">Phone: {contactData?.phoneNumber}</p>
-        <p className="text-white h-full p-4">Address: {contactData?.address}</p>
+        {error ? (
+          <p className="text-white p-4">Error loading contact details: {error.message}</p>
+        ) : isLoading ? (
+          <p className="text-white p-4">Loading contact details...</p>
+        ) : !contactData ? (
+          <p className="text-white p-4">Contact not found</p>
+        ) : (
+          <>
+            <div className="flex flex-row place-content-between w-full items-center p-2">
+              <p className="text-white h-full">{`${contactData?.firstName} ${contactData?.lastName}`}</p>
+              <button
+                className="text-white"
+                onClick={onClose}
+                aria-label="Close contact details"
+              >
+                x
+              </button>
+            </div>
+            <p className="text-white h-full p-4">Phone: {contactData?.phoneNumber}</p>
+            <p className="text-white h-full p-4">Address: {contactData?.address}</p>
+          </>
+        )}
       </div>
     </div>
   );
