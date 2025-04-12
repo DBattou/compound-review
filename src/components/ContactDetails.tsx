@@ -37,7 +37,7 @@ export default function ContactDetails({ onClose, contactId }: ContactDetailsPro
       <div className="absolute inset-0 bg-black opacity-50"></div>
 
       <div
-        className="relative min-w-[440px] flex flex-col items-start rounded-lg bg-neutral-800 "
+        className="relative w-full max-w-[440px] flex flex-col items-start rounded-lg bg-neutral-800 "
         ref={modal}
       >
         <div className="flex flex-row place-content-between w-full items-center p-2">
