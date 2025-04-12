@@ -9,7 +9,7 @@ interface ContactDetailsProps {
 export default function ContactDetails({ onClose, contactId }: ContactDetailsProps) {
   const contactData = USER_LIST.find(({ id }) => id === contactId);
 
-  const modal = useRef<HTMLElement | undefined>(null);
+  const modal = useRef<HTMLElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
