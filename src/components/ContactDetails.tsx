@@ -68,13 +68,13 @@ export default function ContactDetails({ onClose, contactId }: ContactDetailsPro
         ) : (
           <>
             <div className="flex flex-row place-content-between w-full items-center p-2">
-              <p className="text-white h-full">{`${contactData?.firstName} ${contactData?.lastName}`}</p>
+              <p className="text-white h-full text-xl font-medium">{`${contactData?.firstName} ${contactData?.lastName}`}</p>
               <button
-                className="text-white"
+                className="text-white hover:bg-neutral-700 p-2 rounded-full transition-colors"
                 onClick={onClose}
                 aria-label="Close contact details"
               >
-                x
+                ✕
               </button>
             </div>
             <p className="text-white h-full p-4">Phone: {contactData?.phoneNumber}</p>
