@@ -6,7 +6,13 @@ export function useOnClickOutside(
 ) {
   useEffect(() => {
     const listener = (event: TouchEvent | MouseEvent) => {
-      if (!ref.current || ref.current.contains(event.target as Node)) {
+      const target = event.target;
+      if (
+        !ref.current ||
+        !target ||
+        !(target instanceof Node) ||
+        ref.current.contains(event.target as Node)
+      ) {
         return;
       }
 
