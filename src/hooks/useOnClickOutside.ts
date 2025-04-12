@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 
 export function useOnClickOutside(
   ref: React.RefObject<HTMLElement | null>,
-  action: () => void
+  action: () => void,
+  enableEscKey: boolean = true
 ) {
   useEffect(() => {
     const clickListener = (event: TouchEvent | MouseEvent) => {
@@ -20,7 +21,7 @@ export function useOnClickOutside(
     };
 
     const keyListener = (event: KeyboardEvent) => {
-      if (!event || event.key !== 'Escape') {
+      if (!event || !enableEscKey || event.key !== 'Escape') {
         return;
       }
 
@@ -36,5 +37,5 @@ export function useOnClickOutside(
       document.removeEventListener('touchstart', clickListener);
       document.removeEventListener('keydown', keyListener);
     };
-  }, [action, ref]);
+  }, [action, ref, enableEscKey]);
 }
