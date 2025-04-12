@@ -28,7 +28,7 @@ export default function ContactDetails({ onClose, contactId }: ContactDetailsPro
     }
   }, [contactId]);
 
-  const modal = useRef<HTMLElement>(null);
+  const modal = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
