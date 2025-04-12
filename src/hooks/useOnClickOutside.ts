@@ -5,7 +5,7 @@ export function useOnClickOutside(
   action: () => void
 ) {
   useEffect(() => {
-    const listener = (event: TouchEvent | MouseEvent) => {
+    const clickListener = (event: TouchEvent | MouseEvent) => {
       const target = event.target;
       if (
         !ref.current ||
@@ -19,12 +19,22 @@ export function useOnClickOutside(
       action();
     };
 
-    document.addEventListener('mousedown', listener, { passive: true });
-    document.addEventListener('touchstart', listener, { passive: true });
+    const keyListener = (event: KeyboardEvent) => {
+      if (!event || event.key !== 'Escape') {
+        return;
+      }
+
+      action();
+    };
+
+    document.addEventListener('mousedown', clickListener, { passive: true });
+    document.addEventListener('touchstart', clickListener, { passive: true });
+    document.addEventListener('keydown', keyListener);
 
     return () => {
-      document.removeEventListener('mousedown', listener);
-      document.removeEventListener('touchstart', listener);
+      document.removeEventListener('mousedown', clickListener);
+      document.removeEventListener('touchstart', clickListener);
+      document.removeEventListener('keydown', keyListener);
     };
   }, [action, ref]);
 }
