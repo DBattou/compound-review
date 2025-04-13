@@ -7,13 +7,7 @@ export function useOnClickOutside(
 ) {
   useEffect(() => {
     const clickListener = (event: TouchEvent | MouseEvent) => {
-      const target = event.target;
-      if (
-        !ref.current ||
-        !target ||
-        !(target instanceof Node) ||
-        ref.current.contains(event.target as Node)
-      ) {
+      if (!ref.current || ref.current.contains(event.target as Node)) {
         return;
       }
 
@@ -21,7 +15,7 @@ export function useOnClickOutside(
     };
 
     const keyListener = (event: KeyboardEvent) => {
-      if (!event || !enableEscKey || event.key !== 'Escape') {
+      if (!enableEscKey || event.key !== 'Escape') {
         return;
       }
 
